@@ -1,4 +1,6 @@
 <?php 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 session_start();
 require_once "../config/config.php";
 $token = bin2hex(openssl_random_pseudo_bytes(16));
@@ -6,12 +8,6 @@ $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
 $pass = $_POST['pass'];
-$subject = "Verify Your Email";
-
-$header = 'From: ' . $email . '<' . $email . '>' . "\r\n" .
-    'Reply-To: ' . $email . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-    mail($email,$message,$header);
 
     $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
         $res = mysqli_query($conn,$sql);
@@ -22,7 +18,7 @@ $header = 'From: ' . $email . '<' . $email . '>' . "\r\n" .
         }
 
 if(filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($fname) && !empty($lname) && !empty($pass)){
-    $pass = password_hash($pass, PASSWORD_DEFAULT);
+    // $pass = password_hash($pass, PASSWORD_DEFAULT);
     $sql = "INSERT INTO `users`(`fname`, `lname`, `email`, `password`, `token`)
      VALUES ('$fname','$lname','$email','$pass','$token')";
     $res = mysqli_query($conn,$sql);
@@ -34,10 +30,42 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($fname) && !empty($lname)
             $_SESSION['error'] = "Please First name is required!";
             header("location:../signup.php");
         }
-        $message = "
-        <a href='http://localhost/mytest/controller/verify.php?token=".$data['token']."' style='padding:1rem; background:teal; text-decoration:none; color:white; border-radius:7px;'>Verify Your Account</a>
-        ";
-        mail($email,$message,$header);
+        $body = "<h3> click this link to 
+        <a href='http://localhost/phpWork/controller/verify.php?token=".$data['token']."' style='padding:0.5rem; background:teal; text-decoration:none; color:white; border-radius:7px;'>Verify Your Account</a>
+        your account</h3>";
+
+// [sending email]
+//         ==========================================================================================
+// [sending email]
+$error=NULL;
+  require '../vendor/autoload.php';
+$mail = new PHPMailer(true);
+try {
+  // $mail->SMTPDebug = 2;                  
+  $mail->isSMTP(true);                      
+  $mail->Host  = 'smtp.gmail.com;';         
+  $mail->SMTPAuth = true;             
+  $mail->Username = 'jadoiconic@gmail.com';        
+  $mail->Password = 'sndrec123451';            
+  $mail->SMTPSecure = 'tls';              
+  $mail->Port  = 587;
+
+  $mail->setFrom('jadoiconic@gmail.com', 'Email verification link');    
+  $mail->addAddress($email);
+  $mail->isHTML(true);                
+  $mail->Subject = 'Php work Email verification';
+  $mail->Body = $body;
+  $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+  $mail->send();
+//   print "message sent";
+//   header('location:send_email.php');
+  
+} catch (Exception $e) {
+  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+// [/sending email]
+// =========================================================================
+// [/sending email]
 ?>
         <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +73,7 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($fname) && !empty($lname)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-    <title>Sign In</title>
+    <title>Verify Email</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

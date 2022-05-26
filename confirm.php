@@ -31,29 +31,16 @@
                 <i class="fa fa-envelope text-info  position-absolute" style="top:10px;left:17px"></i>
             </div>
             <!-- Notification -->
-        <?php  if(isset($_SESSION['error'])){  ?>
             <div class="alert alert-warning py-2 text-center text-danger" role="alert">
-                <strong> <i class="fa fa-warning"></i> Error:</strong> 
-                <?php
-                        print $_SESSION['error'];
-                        session_unset();
-                ?>
+                <strong> <i class="fa fa-success"></i> Thank you</strong> 
+                <h4>We sent Email to verify your Account</h4>
             </div>
-        <?php } ?>
             <div class="container my-1">
-                <button type="submit" class="btn btn-info text-center form-control border-0" style="border-radius:50px 50px 50px 50px;">
-                    Next
-                </button>
+                
                 <div>
                     <div style="postion:relative;height:2px;background:gray; margin-top:1rem;"></div>
                     <div style="margin-top:-0.8rem"><span style="background:white; z-index:1;">OR</span></div>
                 </div>
-                <button id="my-signin2" class="btn text-center form-control border-0"></button>
-            </div>
-            <div class="container my-1">
-                <a href="signup.php" class="btn text-danger text-center form-control border-0" style="border-radius:50px 50px 50px 50px;">
-                    Create New Account
-                </a>
             </div>
         </form>
     </div>
@@ -72,35 +59,6 @@
 </body>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="bootstrap/js/bootstrap.bundle.js"></script>
-<script>
-    const show = ()=>{
-        const eye = document.querySelector(".eye");
-        var pwd = document.querySelector("#pwd");
-        if(pwd.type === 'password'){
-            pwd.type="text";
-        }else{
-            pwd.type="password";
-        }
-    }
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-        window.location='home.php';
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width':'300',
-        'longtitle': true,
-        'background':'#444',
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  </script>
 
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </html>
