@@ -1,1 +1,2 @@
-# phpwork
+# phpWork
+Class assignment
