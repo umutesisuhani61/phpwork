@@ -2,5 +2,6 @@
 define("host","localhost");
 define("user","root");
 define("pass","");
-define("db","amina");
+define("db","assignment");
 $conn = mysqli_connect(host,user,pass,db);
+?>

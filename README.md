@@ -1,2 +1,2 @@
 # phpWork
-php codes
+Class assignment

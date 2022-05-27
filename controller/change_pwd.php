@@ -2,15 +2,17 @@
 session_start();
 require_once "../config/config.php";
 // print_r($_SESSION);
-$id = $_SESSION['id'];
-$email = $_SESSION['email'];
-$pass = $_POST['cpass'];
+$id = $_SESSION['auth']['id'];
+$email = $_SESSION['auth']['email'];
+$pass = $_POST['current_password'];
+$newPass = $_POST['new_password'];
 
-$sql = mysqli_query($conn,"SELECT * FROM `users` WHERE `id` = '$email' and `password` = '$pass'");
+$sql = mysqli_query($conn,"SELECT * FROM `users` WHERE `id` = $id AND `password` = '$pass'");
 if(mysqli_num_rows($sql) > 0){
     $data = mysqli_fetch_array($sql);
     $_SESSION['auth'] = $data;
-    $upd = mysqli_query($conn,"UPDATE `users` SET `password`='$npass' WHERE `id` = '$id'");
+    // print "it's okay";
+    $upd = mysqli_query($conn,"UPDATE `users` SET `password`='$newPass' WHERE `id` = '$id'");
     if($upd){
         $_SESSION['success'] = "Password have been changed!";
         header("location:../home.php");
@@ -21,4 +23,4 @@ if(mysqli_num_rows($sql) > 0){
 }else{
     $_SESSION['error'] = "Incorect Password Try again!";
     header("location:../home.php");
-}
+    }

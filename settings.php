@@ -30,7 +30,8 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="images/profg.jpg" class="rounded-circle" alt="profile" width="40" height="40" srcset="">
+                    <img src="images/profg.png" class="rounded-circle" alt="profile" width="40" height="40" srcset="">
+                    
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
@@ -41,12 +42,11 @@
   </div>
 </nav>
 <!-- form container -->
-<div class=" mx-0" style="height:85vh; background-color:white;">
-    <!-- <h1>Test</h1> -->
+<div class=" mx-0" style="min-height:83vh; background-color:white;">
     <div class="row mt-0">
         <div class="col-md-7 col-sm-12">
-                <div class="border  position-relative bg-dark" style="background-image:url(images/bg.jpg);height:130px;">
-                 <img class="rounded-circle position-absolute" src="images/profg.jpg" style="height:130px; width: 130px; bottom:-2rem;left:1rem;">
+                <div class="border  position-relative bg-dark" style="background-image:url(images/bg.png);height:130px;">
+                 <img class="rounded-circle position-absolute" src="images/profg.png"  data-bs-toggle="modal" data-bs-target="#changepro"  style="height:130px; width: 130px; bottom:-2rem;left:1rem;">
                 </div>
                 <div class="py-3"></div>
                 <div class="border bg-white py-2 px-2  ">
@@ -117,7 +117,27 @@
     </div>
     </div>
 </div>
-
+<div class="modal fade" id="changepro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changeproLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Change your Profile Picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" arial-label="close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="controller/uploadProfile.php" method="post" enctype="multipart/form-data">
+                        <p>
+                            <input type="file" name="profimg" id="profile">
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row bg-info py-2 m-0 px-4 ">
     <div class="col py-2 d-flex">
@@ -131,6 +151,6 @@
     </div>
 </div>
 </body>
-<!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
-<script src="bootstrap/js/bootstrap.bundle.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="bootstrap/js/bootstrap.bundle.js"></script> -->
 </html>

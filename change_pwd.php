@@ -30,7 +30,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="images/profg.jpg" class="rounded-circle" alt="profile" width="40" height="40" srcset="">
+                    <img src="images/profg.png" class="rounded-circle" alt="profile" width="40" height="40" srcset="">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
@@ -41,12 +41,12 @@
   </div>
 </nav>
 <!-- form container -->
-<div class=" mx-0" style="height:85vh; background-color:white;">
+<div class=" mx-0" style="min-height:83vh; background-color:white;">
     <!-- <h1>Test</h1> -->
     <div class="row mt-0">
         <div class="col-md-7 col-sm-12">
-                <div class="border  position-relative bg-dark" style="background-image:url(images/bg.jpg);height:130px;">
-                 <img class="rounded-circle position-absolute" src="images/profg.jpg" style="height:130px; width: 130px; bottom:-2rem;left:1rem;">
+                <div class="border  position-relative bg-dark" style="background-image:url(images/bg.png);height:130px;">
+                 <img class="rounded-circle position-absolute" src="images/profg.png" style="height:130px; width: 130px; bottom:-2rem;left:1rem;">
                 </div>
                 <div class="py-3"></div>
                 <div class="border bg-white py-2 px-2  ">
@@ -59,6 +59,7 @@
                     </h2>
                 </div>
                 <div class="div">
+                    <form action="controller/change_pwd.php" method="post">
                     <table>
                     <tr>
                         <td style="padding:20px;">Current Password</td>
@@ -95,8 +96,8 @@
                         <td></td>
                         <td> <button type="submit" class="btn btn-info my-3 mx-5">Set New Password</button></td>
                     </tr>
-                   
                 </table>
+                </form>
                 </div>
         </div>
         <div class="col-md-5 col-sm-12 px-3 h-25">
@@ -155,7 +156,6 @@
                 </ul>          
         </div>
     </div>
-    </div>
 </div>
 
 </div>
@@ -174,3 +174,5 @@
 <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
 <script src="bootstrap/js/bootstrap.bundle.js"></script>
 </html>
+
+<!-- php codes for changing password in users table -->

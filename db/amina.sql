@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 26, 2022 at 12:34 PM
+-- Generation Time: May 27, 2022 at 06:23 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `profile`
+--
+
+CREATE TABLE `profile` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -39,15 +52,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `token`, `status`, `time`) VALUES
-(14, 'Nizeyimana', 'Jean de Dieu', 'jadoiconic@gmail.com', '123', 'ee347a1fc953d6763a255c23ebfbf18c', 1, '2022-05-24 17:13:52');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -59,6 +71,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `profile`
+--
+ALTER TABLE `profile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
