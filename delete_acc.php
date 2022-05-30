@@ -9,4 +9,5 @@ if($prof AND $acc){
 }else{
     $_SESSION['error'] = "Failed to delete Account!";
     header("location:home.php");
+    //redirection to homepage
 }
